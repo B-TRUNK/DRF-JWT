@@ -1,0 +1,29 @@
+https://django-rest-framework-simplejwt.readthedocs.io/en/latest/
+
+
+#djoser
+=======
+https://github.com/sunscrapers/djoser
+- DRF, JWT must be installed
+
+*- don't forget the migrate
+
+Djoser End Points:
+------------------
+
+| **Purpose**                   | **Endpoint**                          | **Method**  | **Description**                                                |
+| ----------------------------- | ------------------------------------- | ----------- | -------------------------------------------------------------- |
+| Register a new user           | `/auth/users/`                        | `POST`      | Create a user (send JSON with username, password, email, etc.) |
+| List all users (admin only)   | `/auth/users/`                        | `GET`       | List users if authenticated and allowed                        |
+| Retrieve your profile         | `/auth/users/me/`                     | `GET`       | Get current logged-in user info                                |
+| Update your profile           | `/auth/users/me/`                     | `PUT/PATCH` | Update your own user data                                      |
+| Activate account (if enabled) | `/auth/users/activation/`             | `POST`      | Used if email activation is on                                 |
+| Resend activation             | `/auth/users/resend_activation/`      | `POST`      | Resend activation email                                        |
+| Change password               | `/auth/users/set_password/`           | `POST`      | Change current password                                        |
+| Reset password                | `/auth/users/reset_password/`         | `POST`      | Send reset email                                               |
+| Confirm reset password        | `/auth/users/reset_password_confirm/` | `POST`      | Confirm new password                                           |
+| Obtain JWT tokens             | `/auth/jwt/create/`                   | `POST`      | Login (get access + refresh)                                   |
+| Refresh JWT token             | `/auth/jwt/refresh/`                  | `POST`      | Refresh access token                                           |
+| Verify JWT token              | `/auth/jwt/verify/`                   | `POST`      | Check if token is valid                                        |
+
+

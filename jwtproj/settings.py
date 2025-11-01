@@ -40,21 +40,26 @@ INSTALLED_APPS = [
 
     'blog',
     'rest_framework',
+    'rest_framework_simplejwt',
+    'djoser',
 ]
 
 
 REST_FRAMEWORK = {
 
 
+    # simple jwt auth from documentation
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication', #API based authentication
+        'rest_framework.authentication.SessionAuthentication',       #Browser based authentication   
+    ),
+
     # permissions
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
 
-    # simple jwt auth from documentation
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
+    
 
 }
 
