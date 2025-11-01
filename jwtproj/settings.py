@@ -98,16 +98,28 @@ WSGI_APPLICATION = 'jwtproj.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql',
+#             'NAME': 'jwt',          # database name from pgAdmin
+#             'USER': 'postgres',      # your PostgreSQL username
+#             'PASSWORD': 'as@8675',  # your PostgreSQL password
+#             'HOST': 'localhost',     # or the server IP if remote
+#             'PORT': '5432',          # default PostgreSQL port
+#         }
+#     }
+
 DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'jwt',          # database name from pgAdmin
-            'USER': 'postgres',      # your PostgreSQL username
-            'PASSWORD': 'as@8675',  # your PostgreSQL password
-            'HOST': 'localhost',     # or the server IP if remote
-            'PORT': '5432',          # default PostgreSQL port
-        }
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'jwt',
+        'USER': 'root',
+        'PASSWORD': 'As@8675db',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
+}
+
 
 
 # Password validation
