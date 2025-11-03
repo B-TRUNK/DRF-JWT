@@ -1,5 +1,6 @@
 type: web
 runtime: python312
+package: aboshra/drf-jwt # Use your Wasmer username/namespace and the package name from wasmer.toml
 
 build:
   commands:
