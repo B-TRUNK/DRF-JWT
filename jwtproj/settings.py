@@ -100,25 +100,26 @@ WSGI_APPLICATION = 'jwtproj.wsgi.application'
 
 
 # --- DATABASE CONFIG ---
+
+import sys
+print("DATABASE_URL =", os.environ.get("DATABASE_URL"), file=sys.stderr)
+
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
 if DATABASE_URL:
     DATABASES = {
-        "default": dj_database_url.parse(DATABASE_URL, conn_max_age=600)
+        "default": dj_database_url.parse(DATABASE_URL, conn_max_age=600),
     }
 else:
     DATABASES = {
         "default": {
             "ENGINE": os.environ.get("DATABASE_ENGINE", "django.db.backends.mysql"),
-            "NAME": os.environ.get("DATABASE_NAME", "jwtproj_db"),
-            "USER": os.environ.get("DATABASE_USER", "root"),
-            "PASSWORD": os.environ.get("DATABASE_PASSWORD", ""),
+            "NAME": os.environ.get("DATABASE_NAME"),
+            "USER": os.environ.get("DATABASE_USER"),
+            "PASSWORD": os.environ.get("DATABASE_PASSWORD"),
             "HOST": os.environ.get("DATABASE_HOST", "127.0.0.1"),
             "PORT": os.environ.get("DATABASE_PORT", "3306"),
-            "OPTIONS": {
-                "init_command": "SET sql_mode='STRICT_TRANS_TABLES'",
-            },
-        }
+        },
     }
 
 
