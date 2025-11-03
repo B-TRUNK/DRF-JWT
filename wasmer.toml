@@ -3,6 +3,8 @@ name = "drf-jwt"
 version = "0.1.0"
 description = "Django REST Framework JWT app on Wasmer Edge"
 license = "MIT"
+authors = ["aboshra"]
+package: .
 readme = "README.md"
 
 [dependencies]
