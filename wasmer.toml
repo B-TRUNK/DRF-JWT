@@ -3,11 +3,40 @@ name = "drf-jwt"
 version = "0.1.0"
 description = "Django DRF JWT app packaged for Wasmer Edge"
 # Change the namespace to your wasmer account if you publish; for local deploys '.' is acceptable.
+[package]
+name = "drf-jwt"
+version = "0.1.0"
+description = "Django DRF JWT app packaged for Wasmer Edge"
+authors = ["abanoub-boshra"]
+
+# Use the Python runtime Wasmer provides
+[dependencies]
+"python/python" = "*"
+
+# This section defines how the app starts
+[command.start]
+module = "python/python:python"
+runner = "wasi"
+args = [
+  "-m",
+  "gunicorn",
+  "jwtproj.wsgi:application",
+  "--bind",
+  "0.0.0.0:${PORT}",
+  "--workers",
+  "2",
+  "--timeout",
+  "30"
+]
+
+[deploy]
+start = "start"
 
 [package]
 authors = ["abanoub-boshra"]
 
 # declare we depend on the python runtime package that Wasmer provides
+[[dependencies]]
 name = "python/python"
 version = "*"
 
@@ -15,6 +44,7 @@ version = "*"
 
 # Command that will be executed when Wasmer runs this package locally (or when deploying)
 # It uses the python runtime from the python/python dependency to run Gunicorn.
+[[command]]
 name = "start"
 module = "python/python:python"
 runner = "wasi"
