@@ -1,5 +1,6 @@
 name: drf-jwt
 owner: aboshra
+package: .
 env:
   SECRET_KEY: XavqYRYS44qLLn4ip7vjYru82rPX2-UD32gnpuFUqbzM7tSl03Mc0b3AnHbVu1L6Xoo
   DEBUG: 'False'
