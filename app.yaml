@@ -1,24 +1,18 @@
 name: sdrf
+owner: aboshra
+package: .
+env:
+  SECRET_KEY: XavqYRYS44qLLn4ip7vjYru82rPX2-UD32gnpuFUqbzM7tSl03Mc0b3AnHbVu1L6Xoo
+  DEBUG: 'False'
+  DATABASE_URL: mysql://youruser:yourpassword@your-mysql-host:3306/yourdbname
+  PORT: '8080'
 type: web
 runtime: python312
-authors: ["aboshr"]
-owner: aboshra 
-package: .
-
+authors:
+- aboshr
 build:
   commands:
-    - pip install -r requirements.txt
-
+  - pip install -r requirements.txt
 deploy:
   start:
     cmd: python manage.py runserver 0.0.0.0:$PORT
-
-env:
-  SECRET_KEY: "XavqYRYS44qLLn4ip7vjYru82rPX2-UD32gnpuFUqbzM7tSl03Mc0b3AnHbVu1L6Xoo"
-  DEBUG: "False"
-
-  # Option 1: DATABASE_URL (simpler)
-  DATABASE_URL: "mysql://youruser:yourpassword@your-mysql-host:3306/yourdbname"
-
-  # Required by Wasmer to bind correctly
-  PORT: "8080"
