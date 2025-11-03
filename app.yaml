@@ -1,8 +1,9 @@
 name: sdrf
 type: web
 runtime: python312
-name: aboshra
-package .
+authors: ["aboshr"]
+owner: aboshra 
+package: .
 
 build:
   commands:
