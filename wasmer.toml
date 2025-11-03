@@ -1,28 +1,14 @@
 [package]
-name = "drf-jwt"
-version = "0.1.0"
+name = "aboshra/drf-jwt"
+version = "0.1.3"
 description = "Django REST Framework JWT app on Wasmer Edge"
 license = "MIT"
-authors = ["aboshra"]
 readme = "README.md"
 
 [dependencies]
 "python/python" = "*"
 
-[command.start]
+[[command]]
+name = "start"
 module = "python/python:python"
 runner = "wasi"
-args = [
-  "-m",
-  "gunicorn",
-  "jwtproj.wsgi:application",
-  "--bind",
-  "0.0.0.0:${PORT}",
-  "--workers",
-  "2",
-  "--timeout",
-  "30"
-]
-
-[deploy]
-start = "start"
