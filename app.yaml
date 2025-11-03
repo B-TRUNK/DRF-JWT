@@ -6,15 +6,16 @@ build:
     - pip install -r requirements.txt
 
 deploy:
-  start:
-    cmd: python manage.py runserver 0.0.0.0:$PORT
+  start: start  # Must match [command.start] name in wasmer.toml
 
 env:
+  DJANGO_SETTINGS_MODULE: jwtproj.settings
   SECRET_KEY: "XavqYRYS44qLLn4ip7vjYru82rPX2-UD32gnpuFUqbzM7tSl03Mc0b3AnHbVu1L6Xoo"
   DEBUG: "False"
 
-  # Option 1: DATABASE_URL (simpler)
+  # Option 1: Use unified DATABASE_URL for dj_database_url
   DATABASE_URL: "mysql://youruser:yourpassword@your-mysql-host:3306/yourdbname"
 
-  # Required by Wasmer to bind correctly
+  # Wasmer automatically exposes $PORT, but we set a fallback
   PORT: "8080"
+
