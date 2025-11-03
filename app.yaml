@@ -1,0 +1,29 @@
+kind: wasmer.io/App.v0
+owner: your-wasmer-username   # replace with your Wasmer account/namespace
+name: simplejwtdj             # change to your desired app name
+type: web
+runtime: python312
+package: .                    # package in this repo
+
+# Optional: enable debug to get more verbose error responses from Wasmer
+debug: false
+
+build:
+  commands:
+    - pip install -r requirements.txt
+
+# Wasmer automatically sets PORT (usually 8080)
+start:
+  command: python manage.py runserver 0.0.0.0:${PORT}
+
+# Environment variables (safe defaults for production)
+env:
+  DEBUG: "False"
+  SECRET_KEY: "replace-with-production-secret"
+  ALLOWED_HOSTS: "0.0.0.0,localhost"
+
+  # MySQL settings (prefer DATABASE_URL)
+  DATABASE_URL: "mysql://myuser:mypassword@mysql-host:3306/mydb"
+
+  # Optional — Wasmer auto injects PORT, but define it for safety
+  PORT: "8080"
