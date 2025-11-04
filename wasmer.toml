@@ -1,14 +1,35 @@
+# wasmer.toml (ONLY CHANGE: line with module)
 [package]
 name = "aboshra/drf-jwt"
-version = "0.1.3"
+version = "4.0.2"
 description = "Django REST Framework JWT app on Wasmer Edge"
 license = "MIT"
 readme = "README.md"
 
 [dependencies]
-"python/python" = "*"
+"wasmer/python" = "^3.12"  # Keep as-is (dependency format)
+
+[build]
+commands = [
+    "pip install -r requirements.txt",
+    "python manage.py collectstatic --noinput"
+]
+include = [
+    "jwtproj/",
+    "manage.py",
+    "requirements.txt",
+    "README.md",
+    "jwtproj/**/*"
+]
 
 [[command]]
 name = "start"
-module = "python/python:python"
-runner = "wasi"
+module = "wasmer/python:3.12"   # ← CRITICAL: : not @
+runner = "python"
+args = [
+    "-m",
+    "gunicorn",
+    "jwtproj.wsgi:application",
+    "--bind",
+    "0.0.0.0:$PORT"
+]

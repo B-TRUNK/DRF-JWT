@@ -1,0 +1,6 @@
+# .wasmerenv
+DJANGO_SETTINGS_MODULE=jwtproj.settings
+SECRET_KEY=django-insecure-super-secret-change-in-prod-2025
+DEBUG=False
+DATABASE_URL=mysql://avnadmin:supersecretpassword@your-service-abc123.aivencloud.com:12345/default?ssl-mode=require
+ALLOWED_HOSTS=.wasmer.app

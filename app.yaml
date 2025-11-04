@@ -1,22 +1,16 @@
-type: web
-runtime: python312
-package: aboshra/drf-jwt # Use your Wasmer username/namespace and the package name from wasmer.toml
-
-build:
-  commands:
-    - pip install -r requirements.txt
-
-deploy:
-  start: start  # Must match [command.start] name in wasmer.toml
-
+name: lseedj
+app_id: da_nkPI5tJUDgrm
+owner: aboshra
+package: aboshra/fpkg
 env:
   DJANGO_SETTINGS_MODULE: jwtproj.settings
-  SECRET_KEY: "XavqYRYS44qLLn4ip7vjYru82rPX2-UD32gnpuFUqbzM7tSl03Mc0b3AnHbVu1L6Xoo"
-  DEBUG: "False"
-
-  # Option 1: Use unified DATABASE_URL for dj_database_url
-  DATABASE_URL: "mysql://youruser:yourpassword@your-mysql-host:3306/yourdbname"
-
-  # Wasmer automatically exposes $PORT, but we set a fallback
-  PORT: "8080"
-
+  SECRET_KEY: XavqYRYS44qLLn4ip7vjYru82rPX2-UD32gnpuFUqbzM7tSl03Mc0b3AnHbVu1L6Xoo
+  DEBUG: 'False'
+  DATABASE_URL: mysql://youruser:yourpassword@your-mysql-host:3306/yourdbname
+kind: wasmer.io/App.v0
+type: web
+runtime: python312
+build:
+  commands: null
+deploy:
+  start: start
