@@ -1,0 +1,62 @@
+[package]
+name = "btrunk/npkg"
+version = "1.0.0"
+description = "A Flask app running with Gunicorn on Wasmer"
+abi = "wasi"
+
+[dependencies]
+# *** CRITICAL CHANGE: Using Python 3.9 for stability with PIP initialization ***
+"wasmer/python" = "3.9" 
+
+# =================================================================
+# COMMAND 1: INITIALIZE PIP 
+# This runs 'python -m ensurepip' to install the pip executable.
+# =================================================================
+[[command]]
+name = "init-pip"
+module = "wasmer/python:python" 
+runner = "wasi"
+
+[command.annotations.wasi]
+main-args = ["-m", "ensurepip"]
+
+
+# =================================================================
+# COMMAND 2: INSTALL DEPENDENCIES 
+# This runs 'python -m pip install -r /app/requirements.txt'
+# =================================================================
+[[command]]
+name = "install-deps"
+module = "wasmer/python:python" 
+runner = "wasi"
+
+[command.annotations.wasi]
+main-args = [
+    "-m", 
+    "pip", 
+    "install", 
+    "-r", 
+    "/app/requirements.txt" 
+]
+
+# =================================================================
+# COMMAND 3: START THE APPLICATION 
+# This runs the Gunicorn web server.
+# =================================================================
+[[command]]
+name = "start-app"
+module = "wasmer/python:python" 
+runner = "wasi"
+
+[command.annotations.wasi]
+main-args = [
+    "-m",               
+    "gunicorn",         
+    "--bind",           
+    "0.0.0.0:8000",
+    "app:application"   # 'app' is the file, 'application' is the Flask variable
+]
+
+# Map the current local directory (.) to the '/app' folder inside the container
+[fs]
+"/app" = "."
