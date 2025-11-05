@@ -1,0 +1,32 @@
+[package]
+name = "btrunk/myrndmpkg"
+version = "0.1.0"
+description = "JWT-based Django app"
+license = "MIT"
+entrypoint = "run"
+
+[dependencies]
+# pick an available python package version from Wasmer registry; 3.13.1 exists at the registry
+"python/python" = "3.13.1"
+
+[[command]]
+name = "run"
+module = "python/python:python"
+runner = "wcgi"
+
+# annotations for the WCGI runner (and extra env for the wasi runner)
+[command.annotations.wcgi]
+# dialect is optional — keep default; left here for clarity
+dialect = "wcgi"
+
+[command.annotations.wasi]
+# pass environment variables (these will be merged with secrets / deployed env)
+# On Wasmer these vars can be set as secrets for production via `wasmer app secrets create`
+env = [
+  "DJANGO_SETTINGS_MODULE=jwtproj.wsgi.app",
+  "PORT=8080"
+]
+
+[fs]
+# bundle project sources into the package so the runtime can see them at /src
+"/src" = "."
