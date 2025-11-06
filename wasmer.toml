@@ -1,6 +1,6 @@
 [package]
 name = "btrunk/rgpkg"
-version = "0.1.6"
+version = "0.1.8"
 description = "JWT-based Django app"
 license = "MIT"
 entrypoint = "run"
