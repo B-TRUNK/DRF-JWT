@@ -1,0 +1,15 @@
+kind: wasmer.io/App.v0
+name: jwt-django-app
+owner: btrunk
+package: btrunk/rgpkg@=0.1.6
+env:
+  DJANGO_DEBUG: 'False'
+  DJANGO_ALLOWED_HOSTS: '*'
+  DJANGO_SECRET_KEY: O_2eY7mg2JOflMK1JFKvAxYhxtk8v6Q0_eRePgO7psErA6tnCPj6KEKNbqbgeNxrglc
+cli_args:
+- web
+debug: true
+mysql_databases:
+- name: jwt
+https_only: true
+app_id: da_nZyIPt1UZxma

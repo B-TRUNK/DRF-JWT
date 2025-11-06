@@ -1,0 +1,14 @@
+# .wasmerignore
+env/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.git/
+.gitignore
+*.log
+node_modules/
+staticfiles_debug/
+*.sqlite3
+.DS_Store
